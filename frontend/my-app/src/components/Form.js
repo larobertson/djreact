@@ -10,23 +10,22 @@ class CustomForm extends React.Component {
 
     this.props.getData();
 
-    switch (requestType) {
-      case 'post':
-        return axios
-          .post('http://127.0.0.1:8000/api/', {
-            title: title,
-            content: content
-          })
-          .then(res => console.log(res))
-          .catch(err => console.err(err));
-      case 'put':
-        return axios
-          .put(`http://127.0.0.1:8000/api/${articleId}/`, {
-            title: title,
-            content: content
-          })
-          .then(res => console.log(res))
-          .catch(err => console.err(err));
+    if (requestType === 'post') {
+      axios
+        .post('http://127.0.0.1:8000/api/', {
+          title: title,
+          content: content
+        })
+        .then(res => console.log(title, content))
+        .catch(err => console.error(err));
+    } else if (requestType === 'put') {
+      axios
+        .put(`http://127.0.0.1:8000/api/${articleId}/`, {
+          title: title,
+          content: content
+        })
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
     }
   };
 
