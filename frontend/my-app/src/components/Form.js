@@ -8,6 +8,8 @@ class CustomForm extends React.Component {
     const title = event.target.elements.title.value;
     const content = event.target.elements.content.value;
 
+    this.props.getData();
+
     switch (requestType) {
       case 'post':
         return axios
