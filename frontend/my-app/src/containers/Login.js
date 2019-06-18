@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
-class Login extends React.Component {
+class LoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -12,6 +12,7 @@ class Login extends React.Component {
         // console.log('Received values of form: ', values);
         this.props.onAuth(values.userName, values.password);
       }
+      this.props.history.push('/');
     });
   };
 
@@ -80,7 +81,7 @@ class Login extends React.Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(LoginForm);
 
 const mapStateToProps = state => {
   return {
